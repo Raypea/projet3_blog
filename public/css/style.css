@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans%27');
+
+body {
+    background-color: #EEEEEE;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+/* Page header.php */
+
+/* Page footer.php */
+
+/* Page author.php */
+
+
+.id-author {
+    object-position: 50% 50%;
+    object-fit: cover;
+    height: 20em;
+    width: 20em;
+    border-radius: 50rem;
+}
+
+i {
+    transition: 0.5s;
+    color: black;
+}
+
+i:hover {
+    color: #0984e3;
+}
+
+img {
+    transition: 0.5s;
+}
+
+img:hover {
+    transform: scale(1.05);
+    box-shadow: 3px 5px 30px 0px black !important;
+}
+
