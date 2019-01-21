@@ -40,4 +40,17 @@ class Comments extends Chapter
 
         return $comments;
     }
+
+    // Fonction d'ajout de commentaires
+    public function addComment()
+    {
+        // Connexion BDD
+        $db = dbConnect();
+
+        $comments = $db->prepare('INSERT INTO comments(chapter_id, author, comment, comment_date, signalement_date)
+        VALUES(?, ?, ?, NOW(), ?)');
+        $affectedLines = $comments->execute(array($chapterId, $author, $comment));
+
+        return $affectedLines;
+    }
 }
