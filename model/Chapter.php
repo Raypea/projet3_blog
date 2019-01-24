@@ -10,7 +10,7 @@ class Chapter extends Manager
         // Connexion BDD
         $db = $this->dbConnect();
 
-        $req = $db->query('SELECT * FROM chapters');
+        $req = $db->query('SELECT * FROM chapters ORDER BY date_publication DESC');
 
         $chapters = $req->fetchAll();
 
@@ -18,12 +18,12 @@ class Chapter extends Manager
     }
 
     // Fonction de récupération d'un chapitre ciblé
-    public function getChapter()
+    public function getChapter($chapterId)
     {
         // Connexion BDD
         $db = $this->dbConnect();
 
-        $req = $db->prepare('SELECT id, title, text, author, date_publication, draft FROM chapters WHERE id = ?');
+        $req = $db->prepare('SELECT id, title, text, author, DATE_FORMAT(date_publication, \'%d/%m/%Y à %Hh%imin%ss\') AS date_publication_fr FROM chapters WHERE id = ?');
         $req->execute(array($chapterId));
         $chapter = $req->fetch();
 
