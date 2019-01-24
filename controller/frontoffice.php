@@ -1,6 +1,6 @@
 <?php
 
-require('model/Chapter.php');
+require('model/Comments.php');
 
 class FOController {
     // On récupère la vue de la page d'accueil
@@ -18,14 +18,17 @@ class FOController {
         require('view/frontend/chapterView.php');
     }
 
-    public function chapter()
+    public function listComments()
     {
-        $chapter = getChapter($_GET['id']);
-        $comments = getComments($_GET['id']);
+        $modelChapter = new Chapter();
+        $modelComments = new Comments();
+        $chapter = $modelChapter->getChapter($_GET['id']);
+        $comments = $modelComments->getComments($_GET['id']);
 
         // On appelle la vue correspondante
-        require('view/frontend/chapterView.php');
+        require('view/frontend/commentsView.php');
     }
+
 
     // Ajout de commentaire - partie contrôleur
     public function addComment($chapterId, $author, $comment)
