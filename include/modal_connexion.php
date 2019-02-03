@@ -13,7 +13,7 @@
                         <h2>Connexion</h2>
                     </div>
                     <hr>
-                    <form  action="../controller/frontoffice.php" method="post">
+                    <form  action="index.php?action=connexion" method="post">
                         <div class="form-group">
                             <div class="pt-2">
                                 <label for="email">Email</label>
