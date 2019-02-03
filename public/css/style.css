@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans%27');
 
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Sarabun', sans-serif !important;
+}
+
 body {
     background-color: #EEEEEE;
     overflow-x: hidden;
@@ -7,6 +11,10 @@ body {
 
 h1, h2, h3, h4, h5, h6, p {
     font-family: 'Nunito Sans', sans-serif;
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 /* Page header.php */
@@ -81,8 +89,34 @@ i:hover {
     background: rgba(0,0,0,.5);
 }
 
-.card .card-body {
-    width: 500px;
+/* Partie chapitres de la page d'accueil */
+
+.chapters .card .card-body {
     color: white;
     background-color: #343a40;
 }
+
+.chapters .card {
+    transition: 0.2s;
+}
+
+.chapters .card:hover {
+    transform: scale(0.95);
+    box-shadow: none !important;
+}
+
+.chapters a {
+    color: white;
+}
+
+.chapters a:hover {
+    text-decoration: none;
+}
+
+/* SLIDES */
+
+.slide-title {
+    background-color: rgba(47, 54, 64,0.7);
+    border-radius: 20px;
+}
+
