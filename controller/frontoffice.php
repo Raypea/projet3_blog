@@ -9,6 +9,7 @@ class FOController {
     {
         include("view/frontend/homeView.php"); 
     }
+    // Liste des chapitres
     public function listChapters()
     {
         $model = new Chapter();
@@ -16,6 +17,7 @@ class FOController {
         // On appelle la vue correspondante
         require('view/frontend/chapterView.php');
     }
+    // Liste des commentaires
     public function listComments()
     {
         $modelChapter = new Chapter();
@@ -25,7 +27,7 @@ class FOController {
         // On appelle la vue correspondante
         require('view/frontend/commentsView.php');
     }
-
+    // Page de biographie
     public function myBiography()
     {
         require('view/frontend/biographyView.php');
@@ -71,7 +73,6 @@ class FOController {
         {
                 $_SESSION['id'] = htmlentities($result['id']);
                 $_SESSION['email'] = htmlentities($result['email']);
-                echo 'Vous êtes connecté !';
                 header("Location: index.php");
         }
         else 
@@ -79,4 +80,25 @@ class FOController {
             header("Location: index.php");
         }
     }
+
+    // Déconnexion de la BDD - partie contrôleur
+    public function disconnectAdmin()
+    {
+        session_start();
+        if (isset($_SESSION["id"]))
+        {
+            session_unset();
+            header("Location: index.php");
+        }
+        else
+        {
+            echo "<p> Vous cherchez à vous déconnecter sans être connecté, c'est étonnant </p>";
+        }
+
+        session_destroy();
+
+        setcookie('email', '');
+        setcookie('password', '');
+    }
 }
+
