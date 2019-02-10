@@ -1,11 +1,14 @@
 <?php
 // Appel du contrôleur pour charger les fonctions
 require('controller/frontoffice.php');
+require('controller/backoffice.php');
+
 class Router {
     public function getPage()
     {
         // Affichage de la page d'accueil
         $FOcontroller = new FOController();
+        $BOcontroller = new BOController();
         if(!isset($_GET['action'])) {
             $FOcontroller->getHome();
         }
@@ -35,6 +38,10 @@ class Router {
             }
         }
 
+        else if(isset($_GET['action']) && $_GET['action'] == 'moderer')
+        {
+            $BOcontroller->moderateCommentControl();
+        }
 
         // Affichage de la page de biographie
         else if(isset($_GET['action']) && $_GET['action'] == 'biography')
@@ -53,15 +60,61 @@ class Router {
                 }
             }
         }
+        // Signalement d'un commentaire
+        else if(isset($_GET['action']) && $_GET['action'] == 'signaler')
+        {
+            if(isset($_GET['id']) && $_GET['id'] > 0) {
+                $FOcontroller->signalCommentControl($_GET['id']);
+            }
+        }
+        // Connexion administrateur
         else if(isset($_GET['action']) && $_GET['action'] == 'connexion') 
         {
             if(!empty($_POST['email']) && isset($_POST['email']) && !empty($_POST['password']) && isset($_POST['password'])) {
                 $FOcontroller->connectAdmin();
             }
         }
-
         else {
             header('Location: ./');
-        }
+        } 
+
+        if (isset($_SESSION["id"]) AND !empty($_SESSION["id"]))  {
+            // BACK OFFICE
+            // Supression d'un chapitre et de ses commentaires
+            if(isset($_GET['action']) && $_GET['action'] == 'supprimer')
+            {
+                if(isset($_GET['id']) && $_GET['id'] > 0) {
+                    $BOcontroller->supprChapterControl($_GET['id']);    
+                }
+            }
+            else if(isset($_GET['action']) && $_GET['action'] == 'editer')
+            {
+                if(isset($_GET['id']) && $_GET['id'] > 0) {
+                    $BOcontroller->editChapterControl($_GET['id']);
+                }
+            }
+          
+            // Suppression d'un commentaire
+            else if(isset($_GET['action']) && $_GET['action'] == 'supprComment')
+            {
+                if(isset($_GET['id']) && $_GET['id'] > 0) {
+                    $BOcontroller->supprCommentControl($_GET['id']);
+                }
+            }
+
+            // Suppression du signalement d'un commentaire
+            else if(isset($_GET['action']) && $_GET['action'] == 'unsignal')
+            {
+                if(isset($_GET['id']) && $_GET['id'] > 0)
+                {
+                    $BOcontroller->unsignalCommentControl($_GET['id']);
+                }
+            }
+            // Déconnexion de la BDD
+            else if(isset($_GET['action']) && $_GET['action'] == 'deconnexion')
+            {
+                $FOcontroller->disconnectAdmin();
+            }
+        } 
     }
 }
