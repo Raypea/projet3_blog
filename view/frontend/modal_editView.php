@@ -13,7 +13,7 @@
                         <h2>Modification</h2>
                     </div>
                     <hr>
-                    <form  action="index.php?action=editer" method="post">
+                    <form  action="index.php?action=editer&amp;id=<?= $chap['id'];?>" method="post">
                         <div class="form-group">
                             <div class="pt-2">
                                 <label for="title">Titre du chapitre</label>

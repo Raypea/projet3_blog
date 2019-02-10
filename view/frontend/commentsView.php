@@ -13,6 +13,10 @@
     ?>
         <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date'] ?></p>
         <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+        <a href="index.php?action=signaler&amp;id=<?= $comment['id'] ?>"><span class="badge badge-dark">Signaler</span></a>
+        <?php if (isset($_SESSION["id"]) AND !empty($_SESSION["id"]))  {  ?>
+        <a href="index.php?action=supprComment&amp;id=<?= $comment['id'] ?>"><span class="badge badge-dark">Supprimer</span></a>
+        <?php } ?>
         <hr>
     <?php } ?>
 </div>
@@ -24,11 +28,9 @@
         <div class="form-group">
             <input type="text" id="author" name="author" class="form-control" placeholder="Votre pseudo">
         </div>
-
         <div class="form-group">
-            <textarea name="comment" id="comment" cols="40" rows="5" class="form-control" placeholder="Votre commentaire"></textarea>
+            <textarea name="comment" id="comment" cols="40" rows="20" class="form-control" placeholder="Votre commentaire"></textarea>
         </div>
-
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Envoyer</button>
         </div>
