@@ -11,11 +11,16 @@
                     <a class="nav-link" href="index.php">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?action=romans">Chapitres</a>
+                    <a class="nav-link" href="index.php?action=romans">Mon Roman</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?action=biography">Biographie</a>
+                    <a class="nav-link" href="index.php?action=biography">Ma Biographie</a>
                 </li>
+                <?php if (isset($_SESSION["id"]) AND !empty($_SESSION["id"]))  {  ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?action=moderer">Modération</a>
+                </li>
+                <?php } ?>
             </ul>
             <?php if (isset($_SESSION["id"]) AND !empty($_SESSION["id"]))  {  ?>
             <span class="navbar-text text-white">Vous êtes connecté en tant qu'administrateur</span>

@@ -10,7 +10,7 @@
                 </div>
                 <ul class="nav justify-content-center">
                     <?php if (isset($_SESSION["id"]) AND !empty($_SESSION["id"]))  {  ?>
-                        <li class="nav-item"><a class="nav-link text-white" href="deconnexion.php">Déconnexion</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="index.php?action=deconnexion">Déconnexion</a></li>
                     <?php }  else  { ?>
                         <li class="nav-item"><a class="nav-link" style="cursor:pointer" data-toggle="modal" data-target="#connexionsmodal">Connexion administrateur</a></li>
                     <?php  }  ?>
