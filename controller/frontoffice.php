@@ -47,6 +47,23 @@ class FOController {
         }
     }
 
+    // Signalement de commentaire - partie contrôleur
+    public function signalCommentControl($commentId)
+    {
+        $modelSignaledComment = new Comments();
+
+        $resultSignaledComment = $modelSignaledComment->signalComment($commentId);
+
+        if($resultSignaledComment === false)
+        {
+            die('Impossible de signaler le commentaire');
+        }
+        else
+        {
+            header('Location: index.php?action=romans');
+        }
+    }
+
     // Ajout de chapitre - partie contrôleur
     public function addChapterControl($title, $text, $author)
     {
