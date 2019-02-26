@@ -1,3 +1,4 @@
+/* Infos générales */
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans%27');
 
 h1, h2, h3, h4, h5, h6, p {
@@ -7,6 +8,8 @@ h1, h2, h3, h4, h5, h6, p {
 body {
     background-color: #EEEEEE;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -17,12 +20,7 @@ a:hover {
     text-decoration: none;
 }
 
-/* Page header.php */
-
-/* Page footer.php */
-
-/* Page bio de l'auteur (Accueil) */
-
+/* Partie introduction page d'accueil */
 
 #id-author {
     object-position: 50% 50%;
@@ -50,12 +48,16 @@ i:hover {
     box-shadow: 3px 5px 30px 0px black !important;
 }
 
-/* MODAL CONNEXION */
+/* Modal connexion */
 #connexionsmodal {
     color: black;
 }
 
-/* SECTION ROMANS */
+#editmodal {
+    color: black;
+}
+
+/* Partie chapitres 1 */
 .card {
     transition: 0.5s;
 }
@@ -65,8 +67,10 @@ i:hover {
     box-shadow: 3px 5px 20px 0px black !important;
 }
 
+/* Partie citation */
+
 #IMGSep1{
-    background-image: url(../images/transition2.jpg);
+    background-image: url(../images/book.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -89,11 +93,23 @@ i:hover {
     background: rgba(0,0,0,.5);
 }
 
-/* Partie chapitres de la page d'accueil */
+/* Partie blog */
+.blog {
+    background-color: #f1f2f6;
+}
+
+
+/* Partie carousel */
+.alert {
+    background-color: #f1f2f6;
+    color: black;
+}
+
+/* Partie chapitres */
 
 .chapters .card .card-body {
-    color: white;
-    background-color: #343a40;
+    color: #2f3640;
+   
 }
 
 .chapters .card {
@@ -106,17 +122,27 @@ i:hover {
 }
 
 .chapters a {
-    color: white;
+    color: #2f3640;
 }
 
 .chapters a:hover {
     text-decoration: none;
 }
 
-/* SLIDES */
+/* Partie slides */
 
 .slide-title {
-    background-color: rgba(47, 54, 64,0.7);
     border-radius: 20px;
 }
 
+/* Partie Footer */
+
+footer a {
+    color: white;
+}
+
+footer a:hover {
+    color: grey;
+}
+
+/* Partie pagination */
