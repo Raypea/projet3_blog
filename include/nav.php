@@ -16,6 +16,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?action=biography">Ma Biographie</a>
                 </li>
+                <li>
+                    <a class="nav-link" href="index.php?action=links">Liens</a>
+                </li>
                 <?php if (isset($_SESSION["id"]) AND !empty($_SESSION["id"]))  {  ?>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?action=moderer">Modération</a>

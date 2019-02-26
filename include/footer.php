@@ -20,7 +20,7 @@
         </div>
 
         <div class="footer-copyright text-center text-white py-3">
-            <p>Mentions légales</p>
+            <a href="index.php?action=mentions"><p>Mentions légales</p></a>
             © 2019 copyright
         </div>
     </footer>
