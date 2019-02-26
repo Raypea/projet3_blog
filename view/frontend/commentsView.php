@@ -1,7 +1,8 @@
 <!-- Affichage du chapitre --> 
 <div class="container mt-5 mb-5">
     <h2 class="text-uppercase"> <?php  echo $chapter["title"]."</br>"; ?></h2>
-    <p class="mb-0"> <?php  echo $chapter["text"]."<br>"; ?></p>
+    <p class="mb-0"> <?php  echo $chapter["content"]."<br>"; ?></p>
+    <a href="index.php?action=romans"><button class="btn btn-primary">Revenir à la liste des chapitres</button></a>
 </div>
 
 <!-- Affichage des commentaires --> 
@@ -29,7 +30,7 @@
             <input type="text" id="author" name="author" class="form-control" placeholder="Votre pseudo">
         </div>
         <div class="form-group">
-            <textarea name="comment" id="comment" cols="40" rows="20" class="form-control" placeholder="Votre commentaire"></textarea>
+            <textarea name="comment" id="comment" cols="20" rows="10" class="form-control" placeholder="Votre commentaire"></textarea>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Envoyer</button>

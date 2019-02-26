@@ -31,7 +31,7 @@
 <div id="IMGSep1" class="animated fadeIn delay-1s">
     <div class="container pt-3 pb-3">
         <blockquote class="blockquote text-center text-white mt-5">
-            <h2 class="mb-0">"Le bonheur est parfois caché dans l'inconnu."</h2>
+            <h2 class="mb-0">Le bonheur est parfois caché dans l'inconnu.</h2>
             <footer class="blockquote-footer text-white p-3">Victor Hugo</footer>
         </blockquote>
     </div>

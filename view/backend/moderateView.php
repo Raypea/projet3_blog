@@ -7,7 +7,6 @@
     ?>
         <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date'] ?></p>
         <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
-        <a href="index.php?action=signaler&amp;id=<?= $comment['id'] ?>"><span class="badge badge-dark">Signaler</span></a>
         <?php if (isset($_SESSION["id"]) AND !empty($_SESSION["id"]))  {  ?>
         <a href="index.php?action=supprComment&amp;id=<?= $comment['id'] ?>"><span class="badge badge-dark">Supprimer</span></a>
         <a href="index.php?action=unsignal&amp;id=<?= $comment['id'] ?>"><span class="badge badge-dark">Retirer le signalement</span></a>
