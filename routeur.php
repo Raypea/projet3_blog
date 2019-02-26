@@ -15,7 +15,7 @@ class Router {
         // Affichage des chapitres
         else if(isset($_GET['action']) && $_GET['action'] == 'romans')
         {
-            $FOcontroller->listChapters();
+            $FOcontroller->paginationChapters();
         }
         // Affichage des commentaires liés à un chapitre
         else if(isset($_GET['action']) && $_GET['action'] == 'chapter')
@@ -27,16 +27,7 @@ class Router {
                 echo 'Erreur de l\'affichage';
             }
         }
-        // Ajout d'un chapitre
-        else if(isset($_GET['action']) && $_GET['action'] == 'addChapter')
-        {
-            if (!empty($_POST['title']) && !empty($_POST['author']) && !empty($_POST['text'])) {
-                $FOcontroller->addChapterControl($_POST['title'], $_POST['text'], $_POST['author']);
-            }
-            else {
-                echo 'Erreur : tous les champs ne sont pas remplis !';
-            }
-        }
+        
 
         else if(isset($_GET['action']) && $_GET['action'] == 'moderer')
         {
@@ -48,6 +39,17 @@ class Router {
         {
             $FOcontroller->myBiography();
         }
+        // Affichage de la page des liens
+        else if(isset($_GET['action']) && $_GET['action'] == 'links')
+        {
+            $FOcontroller->myLinks();
+        }
+        // Affichage de la page de mentions légales
+        else if(isset($_GET['action']) && $_GET['action'] == 'mentions')
+        {
+            $FOcontroller->myMentions();
+        }
+
         // Ajout d'un commentaire
         else if(isset($_GET['action']) && $_GET['action'] == 'addComment')
         {
@@ -74,11 +76,7 @@ class Router {
                 $FOcontroller->connectAdmin();
             }
         }
-        else {
-            header('Location: ./');
-        } 
-
-        if (isset($_SESSION["id"]) AND !empty($_SESSION["id"]))  {
+        else if (isset($_SESSION["id"]) AND !empty($_SESSION["id"]))  {
             // BACK OFFICE
             // Supression d'un chapitre et de ses commentaires
             if(isset($_GET['action']) && $_GET['action'] == 'supprimer')
@@ -87,13 +85,30 @@ class Router {
                     $BOcontroller->supprChapterControl($_GET['id']);    
                 }
             }
-            else if(isset($_GET['action']) && $_GET['action'] == 'editer')
-            {
+            // Modification d'un chapitre
+            else if(isset($_GET['action']) && $_GET['action'] == 'modifier') {
                 if(isset($_GET['id']) && $_GET['id'] > 0) {
-                    $BOcontroller->editChapterControl($_GET['id']);
+                    $BOcontroller->editionChapters();
                 }
             }
+            else if(isset($_GET['action']) && $_GET['action'] == 'editer')
+                {
+                    if(isset($_GET['id']) && $_GET['id'] > 0) {
+                        $BOcontroller->editChapterControl($_GET['id']);
+                    }
+                }
           
+            // Ajout d'un chapitre
+            else if(isset($_GET['action']) && $_GET['action'] == 'addChapter')
+            {
+                if (!empty($_POST['title']) && !empty($_POST['author']) && !empty($_POST['text'])) {
+                    $BOcontroller->addChapterControl($_POST['title'], $_POST['text'], $_POST['author']);
+                }
+                else {
+                    echo 'Erreur : tous les champs ne sont pas remplis !';
+                }
+            }
+
             // Suppression d'un commentaire
             else if(isset($_GET['action']) && $_GET['action'] == 'supprComment')
             {
@@ -115,6 +130,9 @@ class Router {
             {
                 $FOcontroller->disconnectAdmin();
             }
+        } 
+        else {
+            header('Location: ./');
         } 
     }
 }
