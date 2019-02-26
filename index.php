@@ -1,4 +1,3 @@
-     
     <!-- HEADER PAGE D'ACCUEIL -->
     <?php 
     $pageTitle = 'Accueil - Jean Forteroche';
