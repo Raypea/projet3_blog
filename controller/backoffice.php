@@ -4,6 +4,20 @@ require_once('model/Comments.php');
 require_once('model/Admin.php');
 
 class BOController {
+    // Ajout de chapitre - partie contrôleur
+    public function addChapterControl($title, $text, $author)
+    {
+        $modelAddChapter = new Chapter();
+        $result = $modelAddChapter->addChapter($title, $text, $author);
+
+        if ($result === false) {
+            die('Impossible d\'ajouter le chapitre !');
+        }
+        else {
+            header('Location: index.php?action=romans');
+        }
+    }
+
     // Suppression d'un chapitre partie contrôleur
     public function supprChapterControl($chapterId)
     {
@@ -64,14 +78,21 @@ class BOController {
         }
     }
 
+    public function editionChapters()
+    {
+        $model = new Chapter();
+        $chapter = $model->getChapter($_GET['id']);
+        require('view/backend/editChapterView.php');
+    }
+
     // Edition d'un chapitre partie contrôleur
     public function editChapterControl($chapterId)
     {
         $modelEditChapter = new Chapter();
 
-        $resultChapter = $modelEditChapter->editChapter($chapterId);
+        $editedChapter = $modelEditChapter->editChapter($chapterId);
 
-        if($resultChapter === false)
+        if($editedChapter === false)
         {
             die('Impossible d\'éditer le chapitre');
         }

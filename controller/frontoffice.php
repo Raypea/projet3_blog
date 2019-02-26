@@ -33,6 +33,18 @@ class FOController {
         require('view/frontend/biographyView.php');
     }
 
+    // Page de liens
+    public function myLinks()
+    {
+        require('view/frontend/linksView.php');
+    }
+
+    // Page de mentions
+    public function myMentions()
+    {
+        require('view/frontend/mentionsView.php');
+    }
+
     // Ajout de commentaire - partie contrôleur
     public function addCommentControl($chapterId, $author, $comment)
     {
@@ -64,19 +76,36 @@ class FOController {
         }
     }
 
-    // Ajout de chapitre - partie contrôleur
-    public function addChapterControl($title, $text, $author)
+    // PARTIE PAGINATION
+    // Fonction pagination - partie contrôleur
+    public function paginationChapters()
     {
-        $modelAddChapter = new Chapter();
-        $result = $modelAddChapter->addChapter($title, $text, $author);
+        $modelPagination = new Chapter();
 
-        if ($result === false) {
-            die('Impossible d\'ajouter le chapitre !');
+        $totalChapters = $modelPagination->totalChapters();
+        $nbChaptersPerPage = 5;
+
+        $nombrePages = ceil($totalChapters/$nbChaptersPerPage);
+
+        if(isset($_GET['page']) && $_GET['page'] > 0)
+        {
+            $pageActive = intval($_GET['page']);
+
+            if($pageActive > $nombrePages)
+            {
+                $pageActive = $nombrePages;
+            }
         }
-        else {
-            header('Location: index.php?action=romans');
+        else
+        {
+            $pageActive = 1;
         }
+        $chapters = $modelPagination->getChaptersByPage($pageActive, $nbChaptersPerPage);
+
+        require('view/frontend/chapterView.php');
     }
+
+
 
     // Connexion à la BDD - partie contrôleur
     public function connectAdmin()
@@ -94,14 +123,14 @@ class FOController {
         }
         else 
         {
-            header("Location: index.php");
+            echo "Identifiant ou mot de passe incorrect!";
         }
     }
 
     // Déconnexion de la BDD - partie contrôleur
     public function disconnectAdmin()
     {
-        session_start();
+        //session_start();
         if (isset($_SESSION["id"]))
         {
             session_unset();
