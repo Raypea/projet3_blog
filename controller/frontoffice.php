@@ -2,20 +2,15 @@
 require_once('model/Chapter.php');
 require_once('model/Comments.php');
 require_once('model/Admin.php');
+require_once('Controller.php');
 
-class FOController {
+class FOController extends Controller {
     // On récupère la vue de la page d'accueil
     public function getHome()
     {
-        include("view/frontend/homeView.php"); 
-    }
-    // Liste des chapitres
-    public function listChapters()
-    {
-        $model = new Chapter();
-        $chapters = $model->getChapters();
-        // On appelle la vue correspondante
-        require('view/frontend/chapterView.php');
+        $variables = array('pageTitle' => 'Accueil - Jean Forteroche');
+
+        $this->composeView('view/frontend/homeView.php', $variables); 
     }
     // Liste des commentaires
     public function listComments()
@@ -25,24 +20,33 @@ class FOController {
         $chapter = $modelChapter->getChapter($_GET['id']);
         $comments = $modelComments->getComments($_GET['id']);
         // On appelle la vue correspondante
-        require('view/frontend/commentsView.php');
+
+        $variables = array('chapter' => $chapter, 'comments' => $comments, 'pageTitle' => 'Commentaires');
+
+        $this->composeView('view/frontend/commentsView.php', $variables);
     }
     // Page de biographie
     public function myBiography()
     {
-        require('view/frontend/biographyView.php');
+        $variables = array('pageTitle' => 'Ma biographie');
+
+        $this->composeView('view/frontend/biographyView.php', $variables);
     }
 
     // Page de liens
     public function myLinks()
     {
-        require('view/frontend/linksView.php');
+        $variables = array('pageTitle' => 'Mes autres romans');
+
+        $this->composeView('view/frontend/linksView.php', $variables);
     }
 
     // Page de mentions
     public function myMentions()
     {
-        require('view/frontend/mentionsView.php');
+        $variables = array('pageTitle' => 'Mentions Légales');
+
+        $this->composeView('view/frontend/mentionsView.php', $variables);
     }
 
     // Ajout de commentaire - partie contrôleur
@@ -102,7 +106,9 @@ class FOController {
         }
         $chapters = $modelPagination->getChaptersByPage($pageActive, $nbChaptersPerPage);
 
-        require('view/frontend/chapterView.php');
+        $variables = array('chapters' => $chapters, 'nombrePages' => $nombrePages, 'pageActive' => $pageActive, 'pageTitle' => 'Chapitres - Page ' .$pageActive);
+
+        $this->composeView('view/frontend/chapterView.php', $variables);
     }
 
 

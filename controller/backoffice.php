@@ -2,8 +2,9 @@
 require_once('model/Chapter.php');
 require_once('model/Comments.php');
 require_once('model/Admin.php');
+require_once('Controller.php');
 
-class BOController {
+class BOController extends Controller {
     // Ajout de chapitre - partie contrôleur
     public function addChapterControl($title, $text, $author)
     {
@@ -41,7 +42,9 @@ class BOController {
  
         $moderatedComments = $modelModerateComment->moderateComments();
 
-        require('view/backend/moderateView.php');
+        $variables = array('moderatedComments' => $moderatedComments, 'pageTitle' => 'Modération');
+
+        $this->composeView('view/backend/moderateView.php', $variables);
     }
 
     // Suppression d'un signalement de commentaire - partie contrôleur
@@ -82,7 +85,10 @@ class BOController {
     {
         $model = new Chapter();
         $chapter = $model->getChapter($_GET['id']);
-        require('view/backend/editChapterView.php');
+
+        $variables = array('chapter' => $chapter, 'pageTitle' => 'Modifier un chapitre');
+
+        $this->composeView('view/backend/editChapterView.php', $variables);
     }
 
     // Edition d'un chapitre partie contrôleur

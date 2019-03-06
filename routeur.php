@@ -28,7 +28,7 @@ class Router {
             }
         }
         
-
+        // Modération de commentaires
         else if(isset($_GET['action']) && $_GET['action'] == 'moderer')
         {
             $BOcontroller->moderateCommentControl();
